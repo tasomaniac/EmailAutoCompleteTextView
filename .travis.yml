@@ -9,6 +9,8 @@ android:
 jdk:
   - oraclejdk7
 
+script: "./gradlew build"
+
 after_success:
   - .buildscript/deploy_snapshot.sh
 
