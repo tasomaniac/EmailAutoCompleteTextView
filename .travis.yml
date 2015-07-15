@@ -1,0 +1,29 @@
+language: android
+
+android:
+  components:
+    - build-tools-22.0.1
+    - extra-android-m2repository
+    - android-22
+
+jdk:
+  - oraclejdk7
+
+after_success:
+  - .buildscript/deploy_snapshot.sh
+
+env:
+  global:
+    - secure: "bSQolHEPp3BT+8+gBjxz15+n7xuZfn9NTjxZVf6Car4tIHGjzrUuCPtS5fl5TwNpeT1TOIF5qtyXhHqpjxqa0LnSuvakSVfNWqqRxcA2oqcNDvZTqWiG1V/h2RetDV+eV+HPTfn+bhLRxPNM7ZGqJAt5nsiNEhhrpkuMY1wuCAM="
+    - secure: "WHreXiJzRR/P8RgqPOXZ4lZog7/k+hpqVrgstRhNtM+OZlfyvRRauOhgHXUGR+oXVAXVvfwFYsJzgqdSG/ATBYUHpnm0uu5PzOeJ4bChz8gU5YbGB2x0ae/aGjkEu5yZSlfkTXJu73dC0Ppk1qhwDGmycYFL6PV+KoBnuOGzbQM="
+
+branches:
+  except:
+    - gh-pages
+
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.gradle
