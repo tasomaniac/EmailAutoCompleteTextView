@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.tasomaniac.widget.emailautocompletetextview.sample"
-        minSdkVersion 8
+        minSdkVersion 14
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
         versionName "$VERSION_NAME"

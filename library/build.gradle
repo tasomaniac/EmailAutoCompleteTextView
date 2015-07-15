@@ -16,6 +16,15 @@ android {
     dexOptions {
         preDexLibraries = !rootProject.ext.ci
     }
+
+    lintOptions {
+        abortOnError true
+        textReport true
+        textOutput 'stdout'
+
+        fatal 'UnusedResources'
+        warning 'InvalidPackage'
+    }
 }
 
 dependencies {
