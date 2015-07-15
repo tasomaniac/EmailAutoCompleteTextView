@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.tasomaniac.widget.emailautocompletetextview.sample"
         minSdkVersion 8
-        targetSdkVersion 21
+        targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "$VERSION_NAME"
     }
     buildTypes {
         release {

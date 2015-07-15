@@ -129,6 +129,7 @@ public class EmailAutoCompleteTextView extends AutoCompleteTextView {
      * @return {code ArrayAdapter<String>} containing emails.
      */
     private ArrayAdapter<String> getEmailAddressAdapter() {
+        //TODO: check for runtime permissions.
         Account[] deviceAccounts = AccountManager.get(getContext()).getAccounts();
         for (Account account : deviceAccounts) {
             if (isEmailAddress(account.name)) {
