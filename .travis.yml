@@ -2,12 +2,13 @@ language: android
 
 android:
   components:
-    - build-tools-22.0.1
+    - build-tools-23.0.1
     - extra-android-m2repository
-    - android-22
+    - android-23
 
 jdk:
   - oraclejdk7
+  - oraclejdk8
 
 script: "./gradlew build"
 
@@ -22,7 +23,6 @@ env:
 branches:
   except:
     - gh-pages
-
 
 sudo: false
 
