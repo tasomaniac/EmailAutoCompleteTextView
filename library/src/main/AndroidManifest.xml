@@ -6,6 +6,15 @@
 
   <application>
 
+    <activity
+      android:name=".PermissionCaptureActivity"
+      android:documentLaunchMode="never"
+      android:excludeFromRecents="true"
+      android:exported="false"
+      android:finishOnCloseSystemDialogs="true"
+      android:relinquishTaskIdentity="true"
+      android:configChanges="orientation|keyboard|keyboardHidden|screenSize|uiMode"
+      android:theme="@android:style/Theme.Translucent.NoTitleBar" />
   </application>
 
 </manifest>
