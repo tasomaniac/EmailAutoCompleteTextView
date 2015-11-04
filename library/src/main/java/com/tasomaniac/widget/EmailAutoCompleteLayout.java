@@ -1,19 +1,19 @@
-package com.tasomaniac.widget.emailautocompletetextview;
+package com.tasomaniac.widget;
 
 import android.Manifest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
@@ -23,7 +23,8 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class EmailAutoCompleteLayout extends LinearLayout
+
+public class EmailAutoCompleteLayout extends BaseEmailAutoCompleteLayout
         implements View.OnFocusChangeListener, PermissionCallbacks {
 
     private static final int PERMISSIONS_REQUEST_GET_ACCOUNTS = 0;
@@ -32,55 +33,73 @@ public class EmailAutoCompleteLayout extends LinearLayout
     protected HashSet<String> accounts = new HashSet<>();
 
     private AutoCompleteTextView autoCompleteTextView;
-    private CheckBox permissionPrimer;
+    private final CheckBox permissionPrimer;
 
-    private BackgroundPermissionManager backgroundPermissionManager;
+    private final BackgroundPermissionManager backgroundPermissionManager;
 
     public EmailAutoCompleteLayout(Context context) {
-        super(context);
-        init(context, null, 0, 0);
+        this(context, null, 0, 0);
     }
 
     public EmailAutoCompleteLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context, attrs, 0, 0);
+        this(context, attrs, 0, 0);
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public EmailAutoCompleteLayout(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init(context, attrs, defStyle, 0);
+        this(context, attrs, defStyle, 0);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public EmailAutoCompleteLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context, attrs, defStyleAttr, defStyleRes);
+        // Can't call through to super(Context, AttributeSet, int) since it doesn't exist on API 10
+        super(context, attrs);
+
+        backgroundPermissionManager = new BackgroundPermissionManager(this, context);
+
+//        inflate(context, R.layout.layout_email_autocomplete, this);
+        setOrientation(LinearLayout.VERTICAL);
+        setAddStatesFromChildren(true);
+
+        permissionPrimer = new CheckBox(context);
+        permissionPrimer.setTextColor(0x8a000000);
+        permissionPrimer.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        permissionPrimer.setText(context.getString(R.string.message_get_accounts_permission));
+        addView(permissionPrimer);
+    }
+
+    @Override
+    public void addView(View child, int index, ViewGroup.LayoutParams params) {
+        if (child instanceof AutoCompleteTextView) {
+            setAutoCompleteTextView((AutoCompleteTextView) child);
+            super.addView(child, 0, params);
+        } else {
+            // Carry on adding the View...
+            super.addView(child, index, params);
+        }
+    }
+
+    private void setAutoCompleteTextView(AutoCompleteTextView child) {
+        // If we already have an AutoCompleteTextView, throw an exception
+        if (autoCompleteTextView != null) {
+            throw new IllegalArgumentException("We already have an AutoCompleteTextView, can only have one");
+        }
+        autoCompleteTextView = child;
+
+        autoCompleteTextView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        autoCompleteTextView.setOnFocusChangeListener(this);
+
+        setupAccountAutocomplete();
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         backgroundPermissionManager.resume();
-        setupAccountAutocomplete();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         backgroundPermissionManager.pause();
-    }
-
-    private void init(Context context, AttributeSet attrs, int defStyleAttr, final int defStyleRes) {
-        backgroundPermissionManager = new BackgroundPermissionManager(this, context);
-
-        inflate(context, R.layout.layout_email_autocomplete, this);
-        setOrientation(LinearLayout.VERTICAL);
-        autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autocomplete);
-        permissionPrimer = (CheckBox) findViewById(R.id.permission_primer);
-
-        autoCompleteTextView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        autoCompleteTextView.setOnFocusChangeListener(this);
     }
 
     private void setupAccountAutocomplete() {
@@ -152,5 +171,13 @@ public class EmailAutoCompleteLayout extends LinearLayout
     public void onShowRequestPermissionRationale(@NonNull String permission, boolean showRationale) {
         permissionPrimer.setChecked(false);
         permissionPrimer.setVisibility(showRationale ? View.VISIBLE : View.GONE);
+    }
+
+    /**
+     * Returns the {@link android.widget.AutoCompleteTextView} used for text input.
+     */
+    @Nullable
+    public AutoCompleteTextView getAutoCompleteTextView() {
+        return autoCompleteTextView;
     }
 }

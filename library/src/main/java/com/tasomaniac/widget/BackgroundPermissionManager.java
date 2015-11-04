@@ -1,4 +1,4 @@
-package com.tasomaniac.widget.emailautocompletetextview;
+package com.tasomaniac.widget;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

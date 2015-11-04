@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    publishNonDefault true
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
@@ -17,16 +18,26 @@ android {
         preDexLibraries = !rootProject.ext.ci
     }
 
+    productFlavors {
+        platform {
+        }
+        design {
+        }
+    }
+
     lintOptions {
         abortOnError true
         textReport true
         textOutput 'stdout'
 
         fatal 'UnusedResources'
-        warning 'InvalidPackage'
     }
 }
 
 dependencies {
     compile 'com.android.support:support-v4:23.1.0'
+
+    designCompile 'com.android.support:design:23.1.0'
 }
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
