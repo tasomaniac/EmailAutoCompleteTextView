@@ -15,6 +15,7 @@ setups itself and auto completes email addresses while the user type.
 - If the permission is not given, There will be a checkbox shown below it for user to indicate that we require it.
 - If the user chooses "never", the checkbox will be hidden.
 
+![](demo.gif)
 
 Usage
 -----
