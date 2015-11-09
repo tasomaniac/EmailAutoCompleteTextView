@@ -45,13 +45,13 @@ Download
 Dependency to just use `EmailAutoCompleteLayout`
 
 ```groovy
-compile 'com.tasomaniac:emailautocompletelayout:0.1'
+compile 'com.tasomaniac:emailautocompletetextview:0.1'
 ```
 
 Dependency to use with `TextInputLayout`
 
 ```groovy
-compile 'com.tasomaniac:emailautocompletelayout-design:0.1'
+compile 'com.tasomaniac:emailautocompletetextview-design:0.1'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
