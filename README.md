@@ -1,7 +1,7 @@
 EmailAutoCompleteTextView
 =========================
 
-<!-- [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-EmailAutoCompleteTextView-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2117) -->
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-EmailAutoCompleteTextView-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/2743)
 [![Build Status](https://travis-ci.org/tasomaniac/EmailAutoCompleteTextView.png?branch=master)](https://travis-ci.org/tasomaniac/EmailAutoCompleteTextView)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
