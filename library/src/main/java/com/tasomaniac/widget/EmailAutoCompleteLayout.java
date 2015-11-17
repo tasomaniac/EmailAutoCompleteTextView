@@ -87,7 +87,9 @@ public class EmailAutoCompleteLayout extends BaseEmailAutoCompleteLayout
         autoCompleteTextView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         autoCompleteTextView.setOnFocusChangeListener(this);
 
-        setupAccountAutocomplete();
+        if (!isInEditMode()) {
+            setupAccountAutocomplete();
+        }
     }
 
     @Override
