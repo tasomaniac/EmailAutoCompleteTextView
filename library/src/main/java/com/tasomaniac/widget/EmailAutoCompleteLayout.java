@@ -5,6 +5,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -55,14 +56,23 @@ public class EmailAutoCompleteLayout extends BaseEmailAutoCompleteLayout
 
         backgroundPermissionManager = new BackgroundPermissionManager(this, context);
 
-//        inflate(context, R.layout.layout_email_autocomplete, this);
         setOrientation(LinearLayout.VERTICAL);
         setAddStatesFromChildren(true);
+
+        final TypedArray a = context.obtainStyledAttributes(attrs,
+                R.styleable.EmailAutoCompleteLayout, defStyleAttr, defStyleRes);
+
+        CharSequence permissionText = a.getText(R.styleable.EmailAutoCompleteLayout_permissionText);
+        if (permissionText == null) {
+            permissionText = context.getString(R.string.message_get_accounts_permission);
+        }
+
+        a.recycle();
 
         permissionPrimer = new CheckBox(context);
         permissionPrimer.setTextColor(0x8a000000);
         permissionPrimer.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        permissionPrimer.setText(context.getString(R.string.message_get_accounts_permission));
+        permissionPrimer.setText(permissionText);
         addView(permissionPrimer);
     }
 

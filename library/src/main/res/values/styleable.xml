@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="EmailAutoCompleteLayout">
-        <attr name="autoRememberTypedEmail" format="boolean" />
-    </declare-styleable>
+  <declare-styleable name="EmailAutoCompleteLayout">
+    <attr name="permissionText" format="string"/>
+  </declare-styleable>
 </resources>
