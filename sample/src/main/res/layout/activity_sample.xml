@@ -13,7 +13,8 @@
   <com.tasomaniac.widget.EmailAutoCompleteLayout
     android:id="@+id/email_auto_complete"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:permissionText="@string/permission_text">
 
     <AutoCompleteTextView
       android:id="@+id/autocomplete"
@@ -21,8 +22,7 @@
       android:layout_height="wrap_content"
       android:hint="@string/user_name"
       android:inputType="textEmailAddress"
-      android:selectAllOnFocus="true"
-      app:permissionText="@string/permission_text"/>
+      android:selectAllOnFocus="true"/>
   </com.tasomaniac.widget.EmailAutoCompleteLayout>
 
 </RelativeLayout>
