@@ -11,16 +11,10 @@ android {
         versionCode 1
         versionName "$VERSION_NAME"
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
 }
 
 dependencies {
     compile project(path: ':library', configuration: 'designRelease')
 
-    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:appcompat-v7:23.1.1'
 }
