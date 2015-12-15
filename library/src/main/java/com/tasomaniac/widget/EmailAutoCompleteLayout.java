@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.text.InputType;
@@ -76,6 +77,14 @@ public class EmailAutoCompleteLayout extends BaseEmailAutoCompleteLayout
         permissionPrimer.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         permissionPrimer.setText(permissionText);
         addView(permissionPrimer);
+    }
+
+    public void setPermissionText(@StringRes int permissionText) {
+        permissionPrimer.setText(permissionText);
+    }
+
+    public void setPermissionText(CharSequence permissionText) {
+        permissionPrimer.setText(permissionText);
     }
 
     @Override
