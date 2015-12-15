@@ -1,12 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.tasomaniac.widget">
+  package="com.tasomaniac.widget.emailautocompletetextview">
 
   <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
 
   <application>
 
     <activity
-      android:name=".PermissionCaptureActivity"
+      android:name="com.tasomaniac.widget.PermissionCaptureActivity"
       android:documentLaunchMode="never"
       android:excludeFromRecents="true"
       android:exported="false"

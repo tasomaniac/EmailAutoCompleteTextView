@@ -21,6 +21,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 
+import com.tasomaniac.widget.emailautocompletetextview.R;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
