@@ -8,11 +8,11 @@ EmailAutoCompleteTextView
 An AutoCompleteTextView with builtin Adapter with the emails in the device.
 
 The library automatically adds GET_ACCOUNTS permission into your Manifest. For Android Marshmallow, the library also
-handles runtime permissions.
+handles runtime permissions automagically.
 
-- If you already use that permission and user gives you the permission, or if the device is below Android M, it
-setups itself and auto completes email addresses while the user type.
-- If the permission is not given, There will be a checkbox shown below it for user to indicate that we require it.
+- If the permission is already given by the user, or if the device is below Android M, it
+setups itself and auto completion of email addresses works right away. 
+- If the permission is not given, there will be a checkbox shown below the view to indicate that we require the permission.
 - If the user chooses "never", the checkbox will be hidden.
 
 ![](demo.gif)
@@ -20,10 +20,9 @@ setups itself and auto completes email addresses while the user type.
 Usage
 -----
 
-The library is heavily influced by `TextInputLayout` from the design library.
+The library is heavily influced by `TextInputLayout` from the design support library.
 
 Just like the `TextInputLayout` you need to add `AutoCompleteTextView` inside in the xml as a child.
-For the basic usage, you need to add `IntegrationPreference` into your preference xml like below.
 
 ```xml
   <com.tasomaniac.widget.EmailAutoCompleteLayout
@@ -37,8 +36,10 @@ For the basic usage, you need to add `IntegrationPreference` into your preferenc
   </com.tasomaniac.widget.EmailAutoCompleteLayout>
 ```
 
-You may want to use `TextInputLayout`. In those case, just with a dependency change `EmailAutoCompleteLayout` will
-extend `TextInputLayout` and you will be good to go.
+Usage with Design Support Lib
+-----------------------------
+
+You may want to use `TextInputLayout` to have beautiful label animation you find the GIF above. In that case, you can use the alternative dependency with `-design` postfix and you will be good to go. It will automatically use the design library version and it will have all the features of `TextInputLayout`
 
 Download
 --------
